@@ -44,9 +44,9 @@ Nesta fase serão implementados os contos do aplicativo e seus endpoints:
 - Criar um endpoint para editar um único conto através do seu id;
 - Criar um endpoint para excluir um conto através do seu id.
 
-### Fase 2 - Mídias
+### Fase 2 - Midias
 
-Nesta fase serão implementados as Mídias dos contos, um conto contém várias mídias:
+Nesta fase serão implementados as midias dos contos, um conto contém várias midias:
 
 - Criar um endpoint onde será possível realizar um upload de um vídeo, música ou imagem com tamanho máximo de 5MB
 - Criar um endpoint onde ao passar o id do conto retorne a url das mídias vinculadas
