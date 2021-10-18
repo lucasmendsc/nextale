@@ -1,4 +1,4 @@
-![Logo Nextale](https://github.com/nextalebr/desafio-backend/blob/master/nextale.png "Nextale")
+![Logo Nextale](https://github.com/nextalebr/desafio-backend/blob/master/nextale.jpeg "Nextale")
 
 # Desafio Back-End - Nextale
 
