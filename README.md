@@ -54,4 +54,4 @@ Nesta fase serão implementados as midias dos contos, um conto contém várias m
 
 ## Ao Concluir
 
-- Após isso envie um e-mail para 'tech@nextale.com.br', com o assunto 'DESAFIO BACK-END' com link do seu repositório ou faça um pull request do projeto e currículo em anexo.
+- Após isso envie um e-mail para 'contato@nextale.com.br', com o assunto 'DESAFIO BACK-END' com link do seu repositório ou faça um pull request do projeto e currículo em anexo.
