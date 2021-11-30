@@ -16,9 +16,8 @@ class CreateTales extends Migration
         Schema::create('tales', function (Blueprint $table) {
             $table->id();
             $table->string('tittle');
-            $table->text('boddy');
-            $table->boolean('is_enable');
-            $table->string('file_size');
+            $table->text('boddy')->nullable();
+            $table->boolean('is_enable')->default('1');
             $table->timestamps();
         });
     }

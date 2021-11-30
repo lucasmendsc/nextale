@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TalesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => '/tales'], function(){
+	Route::get('/', [TalesController::class, 'index']);
+	Route::get('/getTale/{id}',  [TalesController::class, 'show']);
+	Route::post('/update',  [TalesController::class, 'update']);
+	Route::get('/delete/{id}',  [TalesController::class, 'destroy']);
 });
