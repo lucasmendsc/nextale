@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 
 class TalesController extends Controller
 {
-    //Show rows of tales.
+    //Show all Tales.
     public function index()
     {
-        $tales = Tales::all();
-        return response()->json($tales);
+        return Tales::orderBy('created_at')->get();
     }
 
     public function store(Request $request)
     {
         try {
-            $tale = Tales::create($request->all());
+            $tale = Tales::create($request->tittle,$request->boddy,$request->enable);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return ([
+                'Message' => $e->getMessage(),
+            ]);
         }
 
     }
@@ -33,13 +34,15 @@ class TalesController extends Controller
     public function update(Request $request){
     
         try{
-            Tales::where('id', $request->id)->update(['tittle' => $request->tittle,'boddy' => $request->boddy]);
+            Tales::where('id', $request->id)->update(['tittle' => $request->tittle,'boddy' => $request->boddy,'is_enable' => $request->enable]);
               
-            return $this->success([
+            return ([
                 'Message' => 'Tale updated!',
             ]);
         } catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return ([
+                'Message' => $e->getMessage(),
+            ]);
         }
     }
 
@@ -47,11 +50,13 @@ class TalesController extends Controller
     {
         try{
             Tales::where('id', $id)->delete();
-            return $this->success([
+            return ([
                 'Message' => 'Tale successfully deleted!',
             ]);
         }catch (\Exception $e) {
-            return $this->error($e->getMessage());
+            return ([
+                'Message' => $e->getMessage(),
+            ]);
 
         }
        
