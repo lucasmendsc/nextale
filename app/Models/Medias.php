@@ -9,4 +9,8 @@ class Medias extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'tale_id',
+        'path'
+    ];
 }

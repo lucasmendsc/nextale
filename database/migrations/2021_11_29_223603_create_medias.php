@@ -18,8 +18,7 @@ class CreateMedias extends Migration
             $table->bigInteger('tale_id')->unsigned()->nullable(false);
             $table->foreign('tale_id')->references('id')->on('tales');
             $table->string('path');
-            $table->string('file_type');
-            $table->string('file_size');
+            $table->string('file_name')->nullable(true);
             $table->timestamps();
         });
     }
