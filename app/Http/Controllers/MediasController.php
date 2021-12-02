@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Medias;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MediasController extends Controller
 {
@@ -17,21 +18,65 @@ class MediasController extends Controller
     public function store(Request $request)
     {   
         try{
-            $path = "public/storage/contents";
+            $path = "/public";
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
-            $request->file('file')->storeAs($path,$fileName);
 
-            $media = new Medias;
-            $media->tale_id = $request->tale;
-            $media->path = $path;
-            $media->file_name = $fileName;
+            //the function getSize() gets a byte size, wich means that 5000000 is 5mb
+            if($file->getSize() <= 5000000){
+                $request->file('file')->storeAs($path,$fileName);
 
-            $media->save();
+                $media = new Medias;
+    
+                $media->tale_id = $request->tale;
+                $media->path = $path;
+                $media->file_name = $fileName;
+    
+                $media->save();
+                $message = "Media Saved!";
+            }else{
+                $message = "This file is too large.";
+            }
 
             return ([
-                'Message' => 'Media saved!',
+                'Message' => $message,
             ]);
+        }catch(Exception $e){
+            return ([
+                'Message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+
+    public function downloadFile(Request $request)
+    {   
+        try{
+
+            return Storage::download("public/" . $request->file);
+
+        }catch(Exception $e){
+            return ([
+                'Message' => $e->getMessage(),
+            ]);
+        }
+    }
+    
+    public function getUrls(Request $request)
+    {   
+        try{
+            $medias = Medias::where('tale_id', $request->id)->select(array('path', 'file_name'))->get();
+
+            $urlsReturn = [];
+            foreach($medias as $media){
+
+                $urlsReturn[] = [
+                    'path' => $media->path . "/" . $media->file_name
+                ];
+            }
+
+            return $urlsReturn;
+
         }catch(Exception $e){
             return ([
                 'Message' => $e->getMessage(),
@@ -60,13 +105,24 @@ class MediasController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         try {
-            Medias::where('id', $id)->delete();
+            $media = Medias::where('file_name', $request->file)->first();
+
+            if($media){
+                Storage::disk('public')->delete($media->file_name);
+
+                $media->delete();
+                $message = 'Media successfully deleted!';
+            }else{
+                $message = 'Media not found.';
+            }
+
             return ([
-                'Message' => 'Media successfully deleted!',
+                'Message' => $message,
             ]);
+
         } catch (\Exception $e) {
             return ([
                 'Message' => $e->getMessage(),

@@ -16,7 +16,17 @@ class TalesController extends Controller
     public function store(Request $request)
     {
         try {
-            $tale = Tales::create($request->tittle,$request->boddy,$request->enable);
+            $tale = new Tales;
+    
+            $tale->tittle = $request->tittle;
+            $tale->boddy = $request->boddy;
+            $tale->is_enable = $request->enable;
+
+            $tale->save();
+
+            return ([
+                'Message' => 'Tale created!',
+            ]);
         } catch (\Exception $e) {
             return ([
                 'Message' => $e->getMessage(),

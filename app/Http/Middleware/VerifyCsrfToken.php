@@ -9,8 +9,9 @@ class VerifyCsrfToken extends Middleware
     protected $addHttpCookie = true;
 
     protected $except = [
-     'auth/facebook/callback',
-     'auth/google/callback',
+     'https://www.dropgus.com.br/medias/create',
+     'https://www.dropgus.com.br/tales/create',
+     'https://www.dropgus.com.br/tales/update'
  ];
  
 }
