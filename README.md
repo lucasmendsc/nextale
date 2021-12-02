@@ -1,57 +1,59 @@
-![Logo Nextale](https://github.com/nextalebr/desafio-backend/blob/master/nextale.jpeg "Nextale")
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-# Desafio Back-End - Nextale
+# How can should i run it ?
 
-Esse desafio é parte da fase de seleção de desenvolvedor backend.
-Sua avaliação será dada pelas fases que conseguir entregar e a forma com que foram desenvolvidas.
+This aplication has an API posted and ready to use at [Postman Repository](https://www.postman.com/satellite-physicist-92716702/workspace/nextale/overview),wich has these endpoints:
 
-## Pré-requisitos
+## Tale
 
-- Lógica de programação;
-- Conhecimentos sobre Banco de dados;
-- Conhecimentos sobre HTTP, API e REST ;
-- Conhecimentos sobre Git;
+Create a Tale `(tales/create)`
 
-## Requisitos do desafio
+    1. POST method
+    2. Needs to go to the`Boddy` session and give the required camps
+    3. Creates a new Tale
+    
+Get all Tales `(tales/)`
 
-- Utilizar PHP(7.4)
-- Utilizar Laravel(8) ou Lumen
-- Adicionar no README instruções de como executar o projeto.
-- A API deve receber e retornar dados no formato JSON.
+    1. GET method
+    2. Gets all Tales
+    
+Get a single Tale `(tales/getTale)`
 
-## Diferenciais
+    1. GET method
+    2. Gets a Tale
+    
+Update Tale `(tales/update/id)`
 
-- Código limpo
-- Código em Inglês
+    1. POST method
+    2. Needs to go to the`Boddy` session and give the required camps
+    2. Updates a Tale
+    
+Delete Tale `(tales/delete/id)`
+ 
+    1. GET method
+    2. Deletes a Tale
+    
+## Media
 
-## Contexto
+Create a Media and make a Media belong to a Tale `(medias/create)`
 
-Você recebeu uma demanda para desenvolver um backend para controle interno dos nossos conteúdos, precisamos ter conteúdo em texto e também precisará ser adicionado mídias nesse conteúdo.
+    1. POST method
+    2. Needs to go to the`Boddy` session and give the required camps
+    3. Upload a new Media and referece her Tale
+    
+Get all urls `(medias/urls/id)`
 
-### Fase 1 - Contos
+    1. GET method
+    2. Gets all urls of a Tale
+    3. Shows the file name, that will be used to Download a file
+    
+Download file `(tales/download)`
 
-Nesta fase serão implementados os contos do aplicativo e seus endpoints:
+    1. GET method
+    2. Downloads a file by giving his name
+    
+Delete Media `(medias/delete/name)`
 
-- Criar um endpoint onde é cadastrado um conto.
-  - Esses contos devem ter obrigátoriamente os seguintes dados:
-    - **title** | string
-    - **body** | text
-    - **is_enabled** | boolean
-    - **created_at** | datetime
-    - **updated_at** | datetime
-- Criar um endpoint para listagem desses contos, ordernados por ordem de cadastro decrescente (mais novo para mais antigo);
-- Criar um endpoint para listar um único conto através do seu id;
-- Criar um endpoint para editar um único conto através do seu id;
-- Criar um endpoint para excluir um conto através do seu id.
-
-### Fase 2 - Midias
-
-Nesta fase serão implementados as midias dos contos, um conto contém várias midias:
-
-- Criar um endpoint onde será possível realizar um upload de um vídeo, música ou imagem com tamanho máximo de 5MB
-- Criar um endpoint onde ao passar o id do conto retorne a url das mídias vinculadas
-- Criar um endpoint onde seja possível excluir uma mídia relacionada a um usuário.
-
-## Ao Concluir
-
-- Após isso envie um e-mail para 'deyvid@nextale.com.br', com o assunto 'DESAFIO BACK-END' com link do seu repositório ou faça um pull request do projeto e currículo em anexo.
+    1. GET method
+    2. Deletes a Media file and a Media row
+    
